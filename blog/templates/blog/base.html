@@ -5,6 +5,8 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -18,17 +20,17 @@
 </head>
 <body>
 <header class="site-header">
-    <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+    <nav class="navbar navbar-icon-top navbar-expand-lg navbar-dark bg-dark fixed-top">
         <div class="container">
-            <a class="navbar-brand mr-4" href="{% url 'blog_home' %}">Django Blog</a>
+            <a class="navbar-brand mr-4" href="{% url 'blog_home' %}"><i class="fas fa-robot"></i></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle"
                     aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarToggle">
                 <div class="navbar-nav mr-auto">
-                    <a class="nav-item nav-link" href="{% url 'blog_home' %}">Home</a>
-                    <a class="nav-item nav-link" href="{% url 'blog_about' %}">About</a>
+                    <a class="nav-item nav-link" href="{% url 'blog_home' %}"><i class="fa fa-fw fa-home"></i>Home</a>
+                    <a class="nav-item nav-link" href="{% url 'blog_about' %}"><i class="fas fa-university"></i>About</a>
                 </div>
                 <!-- Navbar Right Side -->
                 <div class="navbar-nav">
@@ -38,8 +40,8 @@
                         <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
 
                     {% else %}
-                        <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
-                        <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
+                        <a class="nav-item nav-link" href="{% url 'login' %}"><i class="fa fa-fw fa-user"></i>Login</a>
+                        <a class="nav-item nav-link" href="{% url 'register' %}"><i class="far fa-address-card"></i>Register</a>
                     {% endif %}
                 </div>
             </div>
@@ -48,7 +50,7 @@
 </header>
 <main role="main" class="container">
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-10">
             {% if messages %}
                 {%for message in messages %}
                 <div class="alert alert-{{ message.tags }}">
@@ -58,18 +60,23 @@
             {% endif %}
             {% block content %}{% endblock %}
         </div>
-        <div class="col-md-4">
-            <div class="content-section">
-                <h3>Our Sidebar</h3>
-                <p class='text-muted'>You can put any information here you'd like.
-                <ul class="list-group">
-                    <li class="list-group-item list-group-item-light">Latest Posts</li>
-                    <li class="list-group-item list-group-item-light">Announcements</li>
-                    <li class="list-group-item list-group-item-light">Calendars</li>
-                    <li class="list-group-item list-group-item-light">etc</li>
-                </ul>
-                </p>
-            </div>
+        <div class="col-md-2 fixed">
+            {% if user.is_authenticated %}    
+            <iframe
+                allow="microphone;"
+                width="325"
+                height="600"
+                src="https://console.dialogflow.com/api-client/demo/embedded/983ebd00-89a0-466f-8e02-52f4040c6f95">
+            </iframe>
+            {% else %}
+            <iframe
+                allow="microphone;"
+                width="325"
+                height="600"
+                src="https://console.dialogflow.com/api-client/demo/embedded/c5bf807e-434f-4e75-9fbb-4eeac2fe1eab">
+            </iframe>
+            {% endif %}
+
         </div>
     </div>
 </main>
@@ -84,6 +91,5 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
-
 </body>
 </html>

@@ -9,7 +9,11 @@
       <small class="text-muted">{{ post.date_posted|date:"F d, Y" }}</small>
     </div>
     <h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.title }}</a></h2>
-    <p class="article-content">{{ post.content }}</p>
+    <p class="article-content">{{ post.content|truncatewords:2 }} </p>
+    <div class="text-right">
+      <a class="btn btn-outline-dark mb-4" href="{% url 'post-detail' post.id %}">Read more</a>
+    </div>
+
   </div>
 </article>
 {% endfor %}
@@ -34,3 +38,4 @@
   {% endif %}
 {% endif %}
 {% endblock content %}
+
